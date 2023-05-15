@@ -4,7 +4,7 @@ import { App } from 'components/App';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <BrowserRouter basename="/github.com/savchyndd/goit-react-hw-05-movies">
     <App />
-  </React.StrictMode>
+  </BrowserRouter>
 );
