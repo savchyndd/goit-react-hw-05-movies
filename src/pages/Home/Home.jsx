@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useLocation, Link } from 'react-router-dom';
 import { getTrendingMovies } from 'services/getMovies';
+import { FilmsItem, FilmsList } from './Home.module';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -14,15 +15,15 @@ const Home = () => {
   return (
     <>
       <h1>Trending today</h1>
-      <ul>
+      <FilmsList>
         {movies.map(({ id, original_title }) => (
-          <li key={id}>
+          <FilmsItem key={id}>
             <Link state={{ from: location }} to={`/movies/${id}`}>
               {original_title}
             </Link>
-          </li>
+          </FilmsItem>
         ))}
-      </ul>
+      </FilmsList>
     </>
   );
 };

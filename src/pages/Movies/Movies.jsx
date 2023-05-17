@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getMovieByQuery } from 'services/getMovies';
+import { FilmsItem, FilmsList, InputSearch } from './Movies.module';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -15,14 +16,16 @@ const Movies = () => {
 
   return (
     <>
-      <input type="text" value={query} onChange={handleSearchParams} />
-      <ul>
+      <InputSearch type="text" value={query} onChange={handleSearchParams} />
+      <FilmsList>
         {movies.map(({ id, original_title }) => (
-          <Link key={id} state={{ from: location }} to={`/movies/${id}`}>
-            {original_title}
-          </Link>
+          <FilmsItem key={id}>
+            <Link state={{ from: location }} to={`/movies/${id}`}>
+              {original_title}
+            </Link>
+          </FilmsItem>
         ))}
-      </ul>
+      </FilmsList>
     </>
   );
 };

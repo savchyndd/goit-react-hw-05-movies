@@ -27,8 +27,8 @@ export const NavItem = styled.li`
     color: #ffc700;
   }
 
-  :hover,
-  :focus {
+  a:hover,
+  a:focus {
     color: #ffc700;
     span {
       color: white;
