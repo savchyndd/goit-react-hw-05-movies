@@ -30,7 +30,7 @@ export const getCastMovie = async movieId => {
     `movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
 
-  return data;
+  return data.cast;
 };
 export const getReviewsMovie = async movieId => {
   const { data } = await axios.get(
