@@ -16,7 +16,12 @@ const Movies = () => {
 
   return (
     <>
-      <InputSearch type="text" value={query} onChange={handleSearchParams} />
+      <InputSearch
+        type="text"
+        placeholder="Search"
+        value={query}
+        onChange={handleSearchParams}
+      />
       <FilmsList>
         {movies.map(({ id, original_title }) => (
           <FilmsItem key={id}>
