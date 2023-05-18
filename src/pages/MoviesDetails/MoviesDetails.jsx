@@ -29,8 +29,8 @@ const MoviesDetails = () => {
   useEffect(() => {
     const fetchMovieById = async () => {
       try {
-        const MovieById = await getMovieById(movieId);
-        setMovie(MovieById);
+        const movieById = await getMovieById(movieId);
+        setMovie(movieById);
       } catch (e) {
         console.log(e);
       }

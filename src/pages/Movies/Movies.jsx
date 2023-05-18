@@ -1,27 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getMovieByQuery } from 'services/getMovies';
-import {
-  FilmsItem,
-  FilmsList,
-  InputSearch,
-  ButtonSearch,
-} from './Movies.module';
+
+import Form from 'components/Form/Form';
+import FilmsList from 'components/FilmsList/FilmsList';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setSearchParams({ query });
-  };
-
-  const handleSearchParams = ({ target: { value } }) => {
-    setQuery(value);
-  };
 
   useEffect(() => {
     const currentQuery = searchParams.get('query');
@@ -40,27 +26,8 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <InputSearch
-          type="text"
-          placeholder="Name movie"
-          autoFocus
-          value={query}
-          onChange={handleSearchParams}
-        />
-        <ButtonSearch type="submit">Search</ButtonSearch>
-      </form>
-      {movies.length > 0 && (
-        <FilmsList>
-          {movies.map(({ id, original_title }) => (
-            <FilmsItem key={id}>
-              <Link state={{ from: location }} to={`/movies/${id}`}>
-                {original_title}
-              </Link>
-            </FilmsItem>
-          ))}
-        </FilmsList>
-      )}
+      <Form setSearchParams={setSearchParams} />
+      {movies.length > 0 && <FilmsList movies={movies} />}
     </>
   );
 };
